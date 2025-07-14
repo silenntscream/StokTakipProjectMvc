@@ -1,0 +1,68 @@
+﻿@using WebApplication1.Models.Entity
+@model List<Tbl_Satislar>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form asp-action="SatislariListele" method="get">
+    <label for="baslangicTarihi">Başlangıç Tarihi:</label>
+    <input type="date" name="baslangicTarihi" required />
+
+    <label for="bitisTarihi">Bitiş Tarihi:</label>
+    <input type="date" name="bitisTarihi" required />
+
+    <button type="submit">Listele</button>
+
+
+</form>
+@if (Model != null && Model.Any())
+{
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+    <table>
+        <thead>
+            <tr>
+
+                <th>Ürün</th>
+                <th>Fiyat</th>
+                <th>Müşteri</th>
+                <th>Adet</th>
+                <th>Tarih</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var satis in Model)
+            {
+                <tr>
+
+                    <td>@satis.Urun</td>
+                    <td>@satis.Fiyat</td>
+                    <td>@satis.Tbl_Musteriler.MusteriAd</td>
+                    <td>@satis.Adet</td>
+                    <td>@satis.Tarih</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Gösterilecek satış bulunamadı.</p>
+}

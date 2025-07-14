@@ -1,0 +1,70 @@
+﻿@model WebApplication1.Models.Entity.Tbl_Satislar
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal1">
+    Satış Yap
+</button>
+<br />
+<div class="modal" id="Modal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Satış Yapma Ekranı</h2>
+                <form method="post" action="/Satis/YeniSatis">
+                    <div class="modal-body">
+                        <div>
+                            <label>Ürün Adı</label>
+                            @Html.DropDownListFor(
+                                m => m.Urun,
+                                ViewBag.Urunler as SelectList,
+                                "Ürün Seçiniz",
+                                new { @class = "form-control" }
+                            )
+                            @Html.ValidationMessageFor(m => m.Urun, "", new { @style = "color:red;" })
+                        </div>
+                        <div>
+                            <label>Müşteri Adı</label>
+                            @Html.DropDownListFor(
+                                m => m.Musteri,
+                                ViewBag.Musteriler as SelectList,
+                                "Müşteri Seçiniz",
+                                new { @class = "form-control" }
+                            )
+                            @Html.ValidationMessageFor(m => m.Musteri, "", new { @style = "color:red;" })
+                        </div>
+                        <label>
+                            Adet
+                        </label>
+                        @Html.TextBoxFor(m => m.Adet, new { @class = "form-control" })
+                        <label>
+                            Fiyat
+                        </label>
+                        @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control" })
+                        <label>Tarih</label>
+                        @Html.TextBoxFor(m => m.Tarih, new { @class = "form-control", type = "date" })
+                        @Html.ValidationMessageFor(m => m.Tarih, "", new { @style = "color:red;" })
+                        <br />
+                        <button type="submit" class="btn btn-info">Satış Yap</button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Vazgeç</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+        $(document).ready(function () {
+            $('#UrunKategori').select2({
+                placeholder: "Kategori Seçiniz",
+                allowClear: true,
+                minimumResultForSearch: 0
+            }).on('select2:open', function () {
+                document.querySelector('.select2-search__field').focus();
+            });
+        });
+</script>
+
+

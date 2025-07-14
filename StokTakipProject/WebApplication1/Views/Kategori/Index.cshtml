@@ -1,0 +1,40 @@
+﻿@using WebApplication1.Models.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Tbl_Kategoriler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using (Html.BeginForm("Index", "Kategori", FormMethod.Get))
+{
+    <p>
+        Kategori Ara : @Html.TextBox("p")
+        <input type="submit" value="Ara" class="btn btn-primary" />
+    </p>
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>KATEGORİ ID</th>
+        <th>KATEGORİ ADI</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+        <th>ALERT SİL</th>
+    </tr>
+    <tbody>
+        @foreach (var ktgr in Model)
+        {
+            <tr>
+                <td>@ktgr.KategoriId</td>
+                <td>@ktgr.KategoriAd</td>
+                <td><a href="~/Kategori/Sil/@ktgr.KategoriId" class="btn btn-danger">SİL</a></td>
+                <td><a href="~/Kategori/KategoriGetir/@ktgr.KategoriId" class="btn btn-success">GÜNCELLE</a></td>
+                <td>@Html.ActionLink("SİL BUTONU", "Sil", new { id = ktgr.KategoriId }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Index", new { sayfa }))
+<td><a href="~/Kategori/YeniEkle" class="btn btn-primary">YENİ KATEGORİ EKLE</a></td>
+

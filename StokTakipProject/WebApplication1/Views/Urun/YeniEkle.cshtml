@@ -1,0 +1,59 @@
+﻿@model WebApplication1.Models.Entity.Tbl_Urunler
+
+@{
+    ViewBag.Title = "Yeni Ürün Ekle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>Yeni Ürün Ekle</h2>
+
+<form class="form-group" method="post">
+
+    <div>
+        <label>Ürün Adı</label>
+        @Html.TextBoxFor(m => m.UrunAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.UrunAd, "", new { @style = "color:red;" })
+    </div>
+
+    <div>
+        <label>Ürün Kategori</label>
+        @Html.DropDownListFor(
+            m => m.UrunKategori,
+            ViewBag.Kategoriler as SelectList,
+            "Kategori Seçiniz",
+            new { @class = "form-control" }
+        )
+        @Html.ValidationMessageFor(m => m.UrunKategori, "", new { @style = "color:red;" })
+    </div>
+
+    
+
+    <script>
+        $(document).ready(function () {
+            $('#UrunKategori').select2({
+                placeholder: "Kategori Seçiniz",
+                allowClear: true,
+                minimumResultForSearch: 0
+            }).on('select2:open', function () {
+                document.querySelector('.select2-search__field').focus();
+            });
+        });
+    </script>
+
+    <div>
+        <label>Ürün Fiyat</label>
+        @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Fiyat, "", new { @style = "color:red;" })
+    </div>
+
+    <div>
+        <label>Ürün Stok</label>
+        @Html.TextBoxFor(m => m.Stok, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Stok, "", new { @style = "color:red;" })
+    </div>
+
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Ürün Ekle</button>
+    </div>
+
+</form>

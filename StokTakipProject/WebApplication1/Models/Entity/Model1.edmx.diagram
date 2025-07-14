@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="429ad5336d16483b960bbf816522d3fb" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="StokTakipModel.Tbl_Kategoriler" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="StokTakipModel.Tbl_Musteriler" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="StokTakipModel.sysdiagrams" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="StokTakipModel.Tbl_Satislar" Width="1.5" PointX="5.625" PointY="2.75" />
+        <EntityTypeShape EntityType="StokTakipModel.Tbl_Urunler" Width="1.5" PointX="3" PointY="4.625" />
+        <AssociationConnector Association="StokTakipModel.FK_Tbl_Urunler_Tbl_Kategoriler" />
+        <AssociationConnector Association="StokTakipModel.FK_Tbl_Satislar_Tbl_Musteriler" />
+        <AssociationConnector Association="StokTakipModel.FK_Tbl_Satislar_Tbl_Urunler" />
+        <EntityTypeShape EntityType="StokTakipModel.Tbl_Kullanıcılar" Width="1.5" PointX="9.625" PointY="6.875" />
+        <EntityTypeShape EntityType="StokTakipModel.Tbl_Roller" Width="1.5" PointX="7.375" PointY="7.25" />
+        <AssociationConnector Association="StokTakipModel.FK_Tbl_Kullanıcılar_Tbl_Roller" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

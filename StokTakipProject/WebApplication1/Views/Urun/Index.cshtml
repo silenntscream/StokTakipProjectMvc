@@ -1,0 +1,50 @@
+﻿@using WebApplication1.Models.Entity
+@model List<Tbl_Urunler>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<table id="tbl1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ÜRÜN ID</th>
+            <th>ÜRÜN ADI</th>
+            <th>ÜRÜN KATEGORİ</th>
+            <th>FİYAT</th>
+            <th>STOK</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
+            <th>ALERT SİL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var urnler in Model)
+        {
+            <tr>
+                <td>@urnler.UrunId</td>
+                <td>@urnler.UrunAd</td>
+                <td>@urnler.Tbl_Kategoriler.KategoriAd</td>
+                <td>@urnler.Fiyat</td>
+                <td>@urnler.Stok</td>
+                <td><a href="/Urun/Sil/@urnler.UrunId" class="btn btn-danger">SİL</a></td>
+                <td><a href="/Urun/UrunGetir/@urnler.UrunId" class="btn btn-success">GÜNCELLE</a></td>
+                <td>@Html.ActionLink("SİL BUTONU", "Sil", new { id = urnler.UrunId }, new { @class = "btn btn-warning", onclick = "return confirm('Gerçekten Silmek İstiyor Musunuz?')" })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<td><a href="/Urun/YeniEkle" class="btn btn-primary">YENİ ÜRÜN EKLE</a></td>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+<script>
+    $(document).ready(function () {
+        $('table').DataTable({
+            pageLength: 5,
+            lengthMenu: [5, 10, 25, 50],
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.13.6/i18n/tr.json"
+            }
+        });
+    });
+</script>

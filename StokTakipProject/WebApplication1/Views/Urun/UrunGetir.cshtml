@@ -1,0 +1,49 @@
+﻿@model WebApplication1.Models.Entity.Tbl_Urunler
+@{
+    ViewBag.Title = "KategoriGetir";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@using (Html.BeginForm("Guncelle", "Urun", FormMethod.Post))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.UrunId)
+        @Html.TextBoxFor(m => m.UrunId, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.UrunAd)
+        @Html.TextBoxFor(m => m.UrunAd, new { @class = "form-control" })
+        <br />
+        <div>
+            <label>Ürün Kategori</label>
+            @Html.DropDownListFor(
+                m => m.UrunKategori,
+                ViewBag.Kategoriler as SelectList,
+                "Kategori Seçiniz",
+                new { @class = "form-control" }
+            )
+            @Html.ValidationMessageFor(m => m.UrunKategori, "", new { @style = "color:red;" })
+        </div>
+
+        <script>
+    $(document).ready(function () {
+        $('#UrunKategori').select2({
+            placeholder: "Kategori Seçiniz",
+            allowClear: true,
+            minimumResultForSearch: 0
+        }).on('select2:open', function () {
+            document.querySelector('.select2-search__field').focus();
+        });
+    });
+        </script>
+
+
+        <br />
+        @Html.LabelFor(m => m.Fiyat)
+        @Html.TextBoxFor(m => m.Fiyat, new { @class = "form-control" })
+        <br />
+        @Html.LabelFor(m => m.Stok)
+        @Html.TextBoxFor(m => m.Stok, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning">Ürün Güncelle</button>
+    </div>
+}

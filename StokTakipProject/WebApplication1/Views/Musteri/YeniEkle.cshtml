@@ -1,0 +1,25 @@
+﻿@model WebApplication1.Models.Entity.Tbl_Musteriler
+@{
+    ViewBag.Title = "YeniEkle";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<form class="form-group" method="post">
+    @*<div>
+           * <label>Kategori Adı:</label>
+            <input type="text" class="form-control" name="KategoriAd" required/>
+        </div>*@
+    <div>
+        <label>Müşteri Adı</label>
+        @Html.TextBoxFor(m => m.MusteriAd, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MusteriAd, "", new { @style = "Color:red" })
+    </div>
+    <div>
+        <label>Müşteri Soyadı</label>
+        @Html.TextBoxFor(m => m.MusteriSoyad, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.MusteriSoyad, "", new { @style = "Color:red" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-info">Müşteri Ekle</button>
+    </div>
+</form>
