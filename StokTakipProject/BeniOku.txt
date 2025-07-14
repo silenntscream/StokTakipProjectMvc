@@ -1,0 +1,1 @@
+Local Server Bağlantısı olduğu için ConnString değişiklik gösterebilir. Back Up dosyası .bak uzantısı ile birlikte SQLservera aktarılabilir.
